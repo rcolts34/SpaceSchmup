@@ -13,7 +13,7 @@ public class Enemy : MonoBehaviour
 
     private BoundsCheck bndCheck;
 
-    private void Awake()
+    void Awake()
     {
         bndCheck = GetComponent<BoundsCheck>();
     }
@@ -39,14 +39,17 @@ public class Enemy : MonoBehaviour
         Move();
 
         // Check where this Enemy has gone off the bottom of the screen
-        if (!bndCheck.isOnScreen)
+        if (!bndCheck.LocIs( BoundsCheck.eScreenLocs.offDown))
         {
-            if (pos.y < bndCheck.camHeight - bndCheck.radius)
-            {
-                // We're off the bottom, so destroy this GameObject
-            }
             Destroy(gameObject);
         }
+        //{
+        //    if (pos.y < bndCheck.camHeight - bndCheck.radius)
+        //    {
+        //        // We're off the bottom, so destroy this GameObject
+        //    }
+        //    Destroy(gameObject);
+        //}
     }
 
     public virtual void Move()
